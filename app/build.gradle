@@ -27,10 +27,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
 }
 
 dependencies {
@@ -66,7 +62,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2'
     /* Retrofit2 是一个 OkHttp  网络请求框架的封装。 */
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    /* 必要依赖，和RxjaannotationProcessorOptionsva结合必须用到 */
+    /* 必要依赖 */
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
     /* 必要依赖，解析json字符所用 */
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
@@ -75,12 +71,15 @@ dependencies {
     /* Java 标量值类型的改造转换器。*/
     implementation 'com.squareup.retrofit2:converter-scalars:2.9.0'
     /* Rxjava2 异步框架 */
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
+    //implementation 'io.reactivex.rxjava3:rxjava:3.1.2'
+    //implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.10'
 
-    //LabelsView 标签列表控件
     implementation 'com.github.donkingliang:LabelsView:1.6.5'
+    //LabelsView 标签列表控件
     // 高度自定义的安卓视频框架 https://github.com/Jzvd/JZVideo
-    implementation 'cn.jzvd:jiaozivideoplayer:7.2.0'
+    implementation 'cn.jzvd:jiaozivideoplayer:7.7.0'
     //轮播图框架，banner
     implementation 'io.github.youth5201314:banner:2.2.2'
     // Glide v4 : 快速高效的Android图片加载库

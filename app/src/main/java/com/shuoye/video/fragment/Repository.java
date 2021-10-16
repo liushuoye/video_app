@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Repository {
-    static final String TAG = "Shuoye";
+    static final String TAG = "shuoye";
     Context context;
 
     public Repository(Context context) {

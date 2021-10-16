@@ -2,4 +2,7 @@
 <resources>
     <item type="id" name="StatusBarUtil_fake_status_bar_view" />
     <item type="id" name="StatusBarUtil_translucent_view" />
+
+    <item name="setBannerAdapter" type="id" />
+    <item name="setTimeLine" type="id" />
 </resources>

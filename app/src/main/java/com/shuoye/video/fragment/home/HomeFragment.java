@@ -13,16 +13,11 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.shuoye.video.R;
 import com.shuoye.video.databinding.FragmentHomeBinding;
 import com.shuoye.video.pojo.DataBean;
 import com.shuoye.video.utils.Utils;
-import com.youth.banner.adapter.BannerImageAdapter;
-import com.youth.banner.holder.BannerImageHolder;
 import com.youth.banner.indicator.CircleIndicator;
 import com.youth.banner.listener.OnBannerListener;
 
@@ -32,10 +27,15 @@ import java.util.Date;
 import java.util.Objects;
 
 
+/**
+ * 首页
+ *
+ * @author shuoye
+ */
 public class HomeFragment extends Fragment {
     FragmentHomeBinding binding;
     Handler.Callback callback;
-    NavController navController;//导航控制器
+    NavController navController;
     HomeViewModel model;
     private static final String TAG = "shuoye";
     private static final String[] TABS = Utils.getArray(R.array.week_array);
@@ -44,29 +44,29 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater);
         model = new ViewModelProvider(this).get(HomeViewModel.class);
-        navController = Navigation.findNavController(requireActivity(), R.id.fragmentContainerView);//获取导航控制器
-//        binding.animeList.setOnClickListener(v -> navController.navigate(R.id.action_homeFragment_to_animeListFragment));
+        //获取导航控制器
+        navController = Navigation.findNavController(requireActivity(), R.id.fragmentContainerView);
+        //TODO 设置点击跳转
+        //binding.animeList.setOnClickListener(v -> navController.navigate(R.id.action_homeFragment_to_animeListFragment));
         callback = msg -> {
-            if (msg.what == 1) {
+            if (msg.what == R.id.setBannerAdapter) {
                 //设置轮播图适配器
                 setBannerAdapter();
-            } else if (msg.what == 2) {
-                //更新番剧列表
-                renewal();
+            } else if (msg.what == R.id.setTimeLine) {
+                //设置新番时间表
+                setTimeLine();
             }
             return true;
         };
 
-        if (model.getCallback() == null)
+        if (model.getCallback() == null) {
             model.setCallback(callback);
-        else {
+        } else {
             //设置轮播图适配器
             setBannerAdapter();
             //更新番剧列表
-            renewal();
+            setTimeLine();
         }
-
-
         return binding.getRoot();
     }
 
@@ -74,34 +74,29 @@ public class HomeFragment extends Fragment {
      * 设置轮播图适配器
      */
     void setBannerAdapter() {
-        binding.banner.setAdapter(new BannerImageAdapter<DataBean>(model.getDataBeanList()) {
-            @Override
-            public void onBindView(BannerImageHolder holder, DataBean data, int position, int size) {
-                //图片加载自己实现
-                Glide.with(holder.itemView)//图片视图
-                        .load(data.imageUrl)//图片链接
-                        .apply(RequestOptions.bitmapTransform(new RoundedCorners(30)))
-                        .into(holder.imageView);
-            }
-        })
-                .addBannerLifecycleObserver(this)//添加生命周期观察者
-                .setIndicator(new CircleIndicator(getContext()))//设置轮播指示器(显示在banner上)
-                .setLoopTime(4000)//设置轮播间隔时间 单位毫秒
-                .setOnBannerListener((OnBannerListener<DataBean>) (data, position) -> {
-                    Log.d(TAG, data.title);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("id", data.title);
-//                    navController.navigate(R.id.action_homeFragment_to_animeInfoFragment, bundle);
-                });//设置点击事件
+        binding.banner.setAdapter(new ImageAdapter(model.getDataBeans()))
+                .addBannerLifecycleObserver(this)
+                .setIndicator(new CircleIndicator(getContext()))
+                .setLoopTime(4000);
+        binding.banner.setOnBannerListener((data, position) -> {
+            Log.d(TAG, data.title);
+            Bundle bundle = new Bundle();
+            bundle.putString("id", data.title);
+            //TODO 点击跳转到详情
+//            navController.navigate(R.id.action_homeFragment_to_animeInfoFragment, bundle);
+        });//设置点击事件
+
     }
 
-    void renewal() {
+    /**
+     * 设置新番时间表
+     */
+    void setTimeLine() {
         binding.viewPager2.setAdapter(new FragmentStateAdapter(this) {
             @NotNull
             @Override
             public Fragment createFragment(int position) {
-//                return new RenewalFragment(model.getDataRenew().get(position));
-                return new Fragment();
+                return new TimeLineFragment(model.getTimeLines().get(position));
             }
 
             @Override

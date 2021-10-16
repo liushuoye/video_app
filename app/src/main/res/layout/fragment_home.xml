@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         tools:context=".fragment.home.HomeFragment">
 
-        <com.youth.banner.Banner
+        <com.shuoye.video.fragment.home.MyBanner
             android:id="@+id/banner"
             android:layout_width="match_parent"
             android:layout_height="150dp"
@@ -25,7 +25,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-        </com.youth.banner.Banner>
+        </com.shuoye.video.fragment.home.MyBanner>
 
         <Button
             android:id="@+id/animeList"

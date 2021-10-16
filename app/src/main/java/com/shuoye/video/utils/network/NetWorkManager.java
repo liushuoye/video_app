@@ -3,7 +3,6 @@ package com.shuoye.video.utils.network;
 
 import com.shuoye.video.utils.network.converter.FastJsonConverterFactory;
 import com.shuoye.video.utils.network.interceptor.CacheInterceptor;
-import com.shuoye.video.utils.network.interceptor.EncodingInterceptor;
 import com.shuoye.video.utils.network.request.Request;
 
 import java.io.File;
@@ -53,10 +52,10 @@ public class NetWorkManager {
      * @param isProxy boolean 是否使用代理
      */
     public void init(boolean isProxy) {
-//
-//        if (retrofit != null) {
-//            return;
-//        }
+
+        if (retrofit != null) {
+            return;
+        }
         String host = "localhost";
         int port = 10810;
 
@@ -64,7 +63,8 @@ public class NetWorkManager {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BASIC);
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
-                .addInterceptor(logging)//日志
+                //日志
+                .addInterceptor(logging)
                 .addInterceptor(chain -> {
                     okhttp3.Request build = chain.request()
                             .newBuilder()
@@ -73,24 +73,33 @@ public class NetWorkManager {
                             .build();
                     return chain.proceed(build);
                 })//请求头
-                .connectTimeout(60, TimeUnit.SECONDS)//链接超时为60秒，单位为秒
-                .writeTimeout(60, TimeUnit.SECONDS)//写入超时
-                .readTimeout(60, TimeUnit.SECONDS)//读取超时
-                .retryOnConnectionFailure(true)//连接失败重试
-                .addInterceptor(new EncodingInterceptor("gbk"))//设置编码拦截器
-                .addNetworkInterceptor(new CacheInterceptor())//设置缓存拦截器
-                .cache(new Cache(new File("cache", "responses"), 1024 * 1024 * 500));//设置缓存路径
+                //链接超时为60秒，单位为秒
+                .connectTimeout(60, TimeUnit.SECONDS)
+                //写入超时
+                .writeTimeout(60, TimeUnit.SECONDS)
+                //读取超时
+                .readTimeout(60, TimeUnit.SECONDS)
+                //连接失败重试
+                .retryOnConnectionFailure(true)
+                //设置缓存拦截器
+                .addNetworkInterceptor(new CacheInterceptor())
+                //设置缓存路径
+                .cache(new Cache(new File("cache", "responses"), 1024 * 1024 * 500));
 
         OkHttpClient client;
         if (isProxy) {
             try {
                 Socket socket = new Socket();
-                socket.connect(new InetSocketAddress(host, port), 1000); //设置超时1000毫秒
+                //设置超时1000毫秒
+                socket.connect(new InetSocketAddress(host, port), 1000);
                 socket.close();
                 client = builder
-                        .proxy(new Proxy(Proxy.Type.SOCKS, new InetSocketAddress(host, port)))//加速器代理
-                        .hostnameVerifier(HttpsUtils.getHostnameVerifier(false))//验证主机名
-                        .sslSocketFactory(HttpsUtils.getSslSocketFactoryUnsafe().sSLSocketFactory, HttpsUtils.getSslSocketFactoryUnsafe().trustManager)//设置SSL
+                        //加速器代理
+                        .proxy(new Proxy(Proxy.Type.SOCKS, new InetSocketAddress(host, port)))
+                        //验证主机名
+                        .hostnameVerifier(HttpsUtils.getHostnameVerifier(false))
+                        //设置SSL
+                        .sslSocketFactory(HttpsUtils.getSslSocketFactoryUnsafe().sSLSocketFactory, HttpsUtils.getSslSocketFactoryUnsafe().trustManager)
                         .build();
             } catch (IOException e) {
                 client = builder
@@ -104,8 +113,10 @@ public class NetWorkManager {
                 .client(client)
                 .baseUrl(Request.HOST)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(ScalarsConverterFactory.create())//支持返回原始String
-                .addConverterFactory(FastJsonConverterFactory.create())//支持返回FastJson解析后的实体类
+                //支持返回原始String
+                .addConverterFactory(ScalarsConverterFactory.create())
+                //支持返回FastJson解析后的实体类
+                .addConverterFactory(FastJsonConverterFactory.create())
                 .build();
     }
 
