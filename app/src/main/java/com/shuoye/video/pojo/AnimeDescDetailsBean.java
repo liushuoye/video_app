@@ -28,8 +28,9 @@ public class AnimeDescDetailsBean implements Serializable {
         this.title = title;
         this.url = url;
         this.selected = false;
-        if (playerUrl == null)
+        if (playerUrl == null) {
             return;
+        }
         //Url解码
         try {
             this.playerUrl = URLDecoder.decode(playerUrl, "UTF-8");

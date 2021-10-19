@@ -5,7 +5,7 @@ import android.os.Handler;
 
 import androidx.lifecycle.AndroidViewModel;
 
-import com.shuoye.video.pojo.DataBean;
+import com.shuoye.video.pojo.BannerData;
 import com.shuoye.video.pojo.TimeLine;
 
 import java.util.ArrayList;
@@ -14,14 +14,14 @@ import java.util.List;
 import java.util.Map;
 
 public class HomeViewModel extends AndroidViewModel {
-    List<DataBean> dataBeans;
+    List<BannerData> bannerData;
     Map<Integer, List<TimeLine>> timeLines;
     Handler.Callback callback;
     HomeRepository repository;
 
     public HomeViewModel(Application application) {
         super(application);
-        dataBeans = new ArrayList<>();
+        bannerData = new ArrayList<>();
         repository = new HomeRepository();
         timeLines = new HashMap<>();
     }
@@ -29,7 +29,7 @@ public class HomeViewModel extends AndroidViewModel {
     public void setCallback(Handler.Callback callback) {
         this.callback = callback;
         this.repository.setCallback(this.callback);
-        this.repository.getDataBeans(dataBeans);
+        this.repository.getDataBeans(bannerData);
         this.repository.getTimeLines(timeLines);
 
     }
@@ -38,8 +38,8 @@ public class HomeViewModel extends AndroidViewModel {
         return callback;
     }
 
-    public List<DataBean> getDataBeans() {
-        return dataBeans;
+    public List<BannerData> getDataBeans() {
+        return bannerData;
     }
 
     public Map<Integer, List<TimeLine>> getTimeLines() {

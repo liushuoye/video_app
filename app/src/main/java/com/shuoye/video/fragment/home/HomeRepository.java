@@ -7,7 +7,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.shuoye.video.R;
-import com.shuoye.video.pojo.DataBean;
+import com.shuoye.video.pojo.BannerData;
 import com.shuoye.video.pojo.TimeLine;
 import com.shuoye.video.utils.network.NetWorkManager;
 import com.shuoye.video.utils.network.response.Response;
@@ -30,7 +30,7 @@ import lombok.SneakyThrows;
  * @create 2021-10-16 20:40
  **/
 public class HomeRepository {
-    static final String TAG = "Test";
+    static final String TAG = "Liu_shuoye";
     private Handler.Callback callback;
 
     public HomeRepository() {
@@ -41,21 +41,21 @@ public class HomeRepository {
         this.callback = callback;
     }
 
-    public void getDataBeans(List<DataBean> dataBeans) {
+    public void getDataBeans(List<BannerData> bannerData) {
         NetWorkManager.getRequest()
                 .getDataBeans()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Response<List<DataBean>>>() {
+                .subscribe(new Observer<Response<List<BannerData>>>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
                         Log.d(TAG, "onSubscribe: 开始获取轮播图");
                     }
 
                     @Override
-                    public void onNext(@NonNull Response<List<DataBean>> dataBeansResponse) {
+                    public void onNext(@NonNull Response<List<BannerData>> dataBeansResponse) {
                         if (dataBeansResponse.getCode() == 200) {
-                            dataBeans.addAll(dataBeansResponse.getData());
+                            bannerData.addAll(dataBeansResponse.getData());
                         }
                     }
 

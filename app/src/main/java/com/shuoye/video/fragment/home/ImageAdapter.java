@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
-import com.shuoye.video.pojo.DataBean;
+import com.shuoye.video.pojo.BannerData;
 import com.youth.banner.adapter.BannerAdapter;
 
 import java.util.List;
@@ -19,9 +19,9 @@ import java.util.List;
  *
  * @author shuoye
  */
-public class ImageAdapter extends BannerAdapter<DataBean, ImageAdapter.BannerViewHolder> {
+public class ImageAdapter extends BannerAdapter<BannerData, ImageAdapter.BannerViewHolder> {
 
-    public ImageAdapter(List<DataBean> datas) {
+    public ImageAdapter(List<BannerData> datas) {
         //设置数据，也可以调用banner提供的方法,或者自己在adapter中实现
         super(datas);
     }
@@ -41,9 +41,9 @@ public class ImageAdapter extends BannerAdapter<DataBean, ImageAdapter.BannerVie
     }
 
     @Override
-    public void onBindView(BannerViewHolder holder, DataBean data, int position, int size) {
+    public void onBindView(BannerViewHolder holder, BannerData data, int position, int size) {
         Glide.with(holder.itemView)
-                .load(data.imageUrl)
+                .load(data.getPicUrl())
                 .apply(RequestOptions.bitmapTransform(new RoundedCorners(30)))
                 .into(holder.imageView);
     }

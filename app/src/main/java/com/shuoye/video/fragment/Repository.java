@@ -7,7 +7,7 @@ import android.os.Handler;
 import androidx.annotation.RequiresApi;
 
 import com.alibaba.fastjson.JSONObject;
-import com.shuoye.video.pojo.DataBean;
+import com.shuoye.video.pojo.BannerData;
 import com.shuoye.video.pojo.PlayLine;
 
 import java.util.List;
@@ -26,10 +26,10 @@ public class Repository {
     /**
      * 获取轮播图
      *
-     * @param dataBeanList 返回数据
+     * @param bannerDataList 返回数据
      * @param callback     传递消息
      */
-    public void getDataBeanList(List<DataBean> dataBeanList, Handler.Callback callback) {
+    public void getDataBeanList(List<BannerData> bannerDataList, Handler.Callback callback) {
 
     }
 

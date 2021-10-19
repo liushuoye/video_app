@@ -3,7 +3,7 @@ package com.shuoye.video.fragment.home;
 import android.content.Context;
 import android.util.AttributeSet;
 
-import com.shuoye.video.pojo.DataBean;
+import com.shuoye.video.pojo.BannerData;
 import com.youth.banner.Banner;
 
 /**
@@ -11,7 +11,7 @@ import com.youth.banner.Banner;
  *
  * @author shuoy
  */
-public class MyBanner extends Banner<DataBean, ImageAdapter> {
+public class MyBanner extends Banner<BannerData, ImageAdapter> {
     public MyBanner(Context context) {
         super(context);
     }

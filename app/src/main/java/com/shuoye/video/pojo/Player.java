@@ -7,23 +7,20 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 /**
- * 新番时间表资源
+ * TODO
  *
  * @author shuoye
  * @program video
- * @ClassName TimeLine
- * @create 2021-10-16 18:36
+ * @ClassName Player
+ * @create 2021-10-17 11:11
  **/
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-public class TimeLine {
+public class Player {
 	private Integer id;
-	private String name;
-	private Integer wd;
-	private Boolean isNew;
-	private String mtime;
-	private String nameForNew;
+	private String from;
+	private String url;
 }

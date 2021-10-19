@@ -11,9 +11,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.bumptech.glide.request.RequestOptions;
 import com.shuoye.video.R;
 import com.shuoye.video.adapter.ViewHolder;
 import com.shuoye.video.databinding.ItemTimeLineBinding;
@@ -60,11 +57,7 @@ public class TimeLineAdapter extends RecyclerView.Adapter<ViewHolder<ItemTimeLin
             TimeLine item = data.get(position);
             holder.itemView.setTag(item.getId());
             holder.binding.name.setText(item.getName());
-            holder.binding.tag.setText(item.getEpisodes());
-            Glide.with(holder.itemView)
-                    .load(item.getCover())
-                    .apply(RequestOptions.bitmapTransform(new RoundedCorners(30)))
-                    .into(holder.binding.imageView);
+            holder.binding.nameForNew.setText(item.getNameForNew());
         }
     }
 

@@ -1,6 +1,6 @@
 package com.shuoye.video.utils.network.request;
 
-import com.shuoye.video.pojo.DataBean;
+import com.shuoye.video.pojo.BannerData;
 import com.shuoye.video.pojo.TimeLine;
 import com.shuoye.video.utils.network.response.Response;
 
@@ -20,22 +20,22 @@ import retrofit2.http.Url;
  * 封装请求的接口
  **/
 public interface Request {
-    String HOST = "http://47.106.154.121:8080/video/";
+    String HOST = "http://47.106.154.121:8080/video/api/";
 
     /**
      * 获取轮播图资源
      *
      * @return Observable<List < DataBean>>
      */
-    @GET("api/banner/banner_data")
-    Observable<Response<List<DataBean>>> getDataBeans();
+    @GET("banner/banner_data")
+    Observable<Response<List<BannerData>>> getDataBeans();
 
     /**
      * 获取新番时间表资源
      *
      * @return Observable<Map < Integer, List < TimeLine>>>
      */
-    @GET("api/anime/time_line")
+    @GET("anime/time_line")
     Observable<Response<Map<Integer, List<TimeLine>>>> getTimeLines();
 
 

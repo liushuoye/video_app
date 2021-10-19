@@ -16,10 +16,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.shuoye.video.R;
 import com.shuoye.video.databinding.FragmentHomeBinding;
-import com.shuoye.video.pojo.DataBean;
 import com.shuoye.video.utils.Utils;
 import com.youth.banner.indicator.CircleIndicator;
-import com.youth.banner.listener.OnBannerListener;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -37,7 +35,7 @@ public class HomeFragment extends Fragment {
     Handler.Callback callback;
     NavController navController;
     HomeViewModel model;
-    private static final String TAG = "shuoye";
+    private static final String TAG = "Liu_shuoye";
     private static final String[] TABS = Utils.getArray(R.array.week_array);
 
     @Override
@@ -79,9 +77,9 @@ public class HomeFragment extends Fragment {
                 .setIndicator(new CircleIndicator(getContext()))
                 .setLoopTime(4000);
         binding.banner.setOnBannerListener((data, position) -> {
-            Log.d(TAG, data.title);
+            Log.d(TAG, data.getTitle());
             Bundle bundle = new Bundle();
-            bundle.putString("id", data.title);
+            bundle.putInt("id", data.getAID());
             //TODO 点击跳转到详情
 //            navController.navigate(R.id.action_homeFragment_to_animeInfoFragment, bundle);
         });//设置点击事件

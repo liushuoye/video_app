@@ -40,6 +40,24 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    ////////////////////////////////////////////////////////////////////
+    ///数据库
+    def room_version = "2.3.0"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    // 可选 - Room 的 RxJava2 支持
+    implementation "androidx.room:room-rxjava2:$room_version"
+    // 可选 - Room 的 RxJava3 支持
+    implementation "androidx.room:room-rxjava3:$room_version"
+    // 可选 - 对 Room 的 Guava 支持，包括 Optional 和 ListenableFuture
+    implementation "androidx.room:room-guava:$room_version"
+    // 可选 - 测试助手
+    testImplementation "androidx.room:room-testing:$room_version"
+    // 可选 - 分页 3 集成
+    implementation "androidx.room:room-paging:2.4.0-beta01"
+
+
     ////////////////////////////////////////////////////////////////////
     /// 常用工具
 
