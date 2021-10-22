@@ -3,10 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Project/Android/Video/app/src/main/res/layout/activity_main.xml" value="0.22395833333333334" />
-        <entry key="..\:/Project/Android/Video/app/src/main/res/layout/fragment_info.xml" value="0.22395833333333334" />
-        <entry key="..\:/Project/Android/Video/app/src/main/res/layout/fragment_time_line.xml" value="0.11145833333333334" />
-        <entry key="..\:/Project/Android/Video/app/src/main/res/layout/item_time_line.xml" value="0.33" />
+        <entry key="..\:/Project/Android/Video/app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="..\:/Project/Android/Video/app/src/main/res/layout/fragment_homet.xml" value="0.1" />
       </map>
     </option>
   </component>
