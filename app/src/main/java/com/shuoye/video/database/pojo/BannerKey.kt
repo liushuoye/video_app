@@ -1,21 +1,19 @@
 package com.shuoye.video.database.pojo
 
-import androidx.room.Dao
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 /**
  * TODO
  * @program Video
- * @ClassName TimeLineKey
+ * @ClassName BannerKey
  * @author shuoye
- * @create 2021-10-23 10:46
+ * @create 2021-10-23 21:16
  **/
-@Entity(tableName = "time_line_key")
-data class TimeLineKey(
+@Entity(tableName = "banner_key")
+data class BannerKey(
     @PrimaryKey
     val id: Int,
-    val prevKey: Int?,
-    val nextKey: Int?
-
+    val time: Long = System.currentTimeMillis()
 )
+

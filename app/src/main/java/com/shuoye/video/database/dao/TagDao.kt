@@ -1,7 +1,7 @@
 package com.shuoye.video.database.dao
 
-import android.nfc.Tag
 import androidx.room.Dao
+import com.shuoye.video.database.pojo.Tag
 
 /**
  * TODO

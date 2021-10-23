@@ -1,8 +1,6 @@
 package com.shuoye.video.database.pojo
 
-import androidx.room.Entity
-import androidx.room.Ignore
-import androidx.room.PrimaryKey
+import androidx.room.*
 
 
 /**
@@ -68,11 +66,6 @@ data class AnimeInfo(
     val status: String?,
 
     /**
-     * 剧情类型
-     */
-    val tags: List<Tag>?,
-
-    /**
      * 视频清晰度
      */
     val videoResolution: String?,
@@ -117,11 +110,6 @@ data class AnimeInfo(
      */
     val seriesName: String?,
 
-    /**
-     * 系列
-     */
-    @Ignore
-    val series: List<AnimeInfo>?,
 
     /**
      * 官方网站

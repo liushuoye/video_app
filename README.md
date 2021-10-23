@@ -21,6 +21,14 @@ Markdown语法参考
 #使用的框架：
 ------------
 
+### [Banner 2.0图片轮播控件](https://github.com/youth5201314/banner)
+
+*Banner 2.0 Android广告图片轮播控件，内部基于ViewPager2实现，Indicator和UI都可以自定义*
+
+```
+   implementation 'io.github.youth5201314:banner:2.2.2'
+```
+
 ### [使用 Hilt 实现依赖项注入：](https://developer.android.google.cn/training/dependency-injection/hilt-android?hl=zh_cn)
 
 **Hilt 是 Android 的依赖项注入库，可减少在项目中执行手动依赖项注入的样板代码。执行手动依赖项注入要求您手动构造每个类及其依赖项， 并借助容器重复使用和管理依赖项。 Hilt

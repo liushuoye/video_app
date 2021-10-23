@@ -1,11 +1,12 @@
 package com.shuoye.video.api
 
+import com.shuoye.video.database.pojo.Banner
 import com.shuoye.video.database.pojo.TimeLine
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 /**
- * TODO
+ * 请求
  * @program Video
  * @ClassName Request
  * @author shuoye
@@ -17,7 +18,8 @@ interface Request {
     }
 
     @GET("anime/time_line")
-    suspend fun getTimeLine(
-        @Query("wd") wd: Int
-    ): Response<TimeLine>
+    suspend fun getTimeLine(@Query("wd") wd: Int): Response<TimeLine>
+
+    @GET("banner/banner_data")
+    suspend fun getBanner(): Response<Banner>
 }

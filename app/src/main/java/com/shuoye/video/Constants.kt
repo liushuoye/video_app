@@ -9,4 +9,5 @@ package com.shuoye.video
  **/
 const val DATABASE_NAME = "video_db"
 const val PLANT_DATA_FILENAME = "TimeLine.json"
+const val TAG = "Liu_shuoye"
 

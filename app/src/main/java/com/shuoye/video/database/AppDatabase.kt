@@ -5,8 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.shuoye.video.DATABASE_NAME
-import com.shuoye.video.database.dao.TimeLineDao
-import com.shuoye.video.database.dao.TimeLineKeyDao
+import com.shuoye.video.database.dao.*
 import com.shuoye.video.database.pojo.*
 
 /**
@@ -18,9 +17,8 @@ import com.shuoye.video.database.pojo.*
  **/
 @Database(
     entities = [
-        TimeLine::class,
-        TimeLineKey::class,
-        Banner::class,
+        TimeLine::class, TimeLineKey::class,
+        Banner::class, BannerKey::class,
         Tag::class,
         AnimeInfo::class
     ],
@@ -30,6 +28,11 @@ import com.shuoye.video.database.pojo.*
 abstract class AppDatabase : RoomDatabase() {
     abstract fun timeLineDao(): TimeLineDao
     abstract fun timeLineKeyDao(): TimeLineKeyDao
+    abstract fun bannerDao(): BannerDao
+    abstract fun bannerKeyDao(): BannerKeyDao
+    abstract fun tagDao(): TagDao
+    abstract fun animeInfo(): AnimeInfoDao
+    abstract fun animeDao(): AnimeDao
 
     companion object {
 

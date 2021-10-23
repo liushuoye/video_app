@@ -4,7 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Project/Android/Video/app/src/main/res/layout/activity_main.xml" value="0.18" />
-        <entry key="..\:/Project/Android/Video/app/src/main/res/layout/fragment_homet.xml" value="0.1" />
+        <entry key="..\:/Project/Android/Video/app/src/main/res/layout/fragment_homet.xml" value="0.25" />
+        <entry key="..\:/Project/Android/Video/app/src/main/res/layout/item_banner_image.xml" value="0.4365482233502538" />
       </map>
     </option>
   </component>

@@ -30,9 +30,8 @@ class TimeLineRemoteMediator(
         // 分页开始后立即启动远程刷新并且不触发远程前置或
         // 追加直到刷新成功。在我们不介意显示过时的情况下，
         // 缓存离线数据，我们可以返回 SKIP_INITIAL_REFRESH 来防止分页
-        // 触发远程刷新。
-//        return InitializeAction.LAUNCH_INITIAL_REFRESH
-        return InitializeAction.SKIP_INITIAL_REFRESH
+        // 触发远程刷新。LAUNCH_INITIAL_REFRESH
+        return InitializeAction.LAUNCH_INITIAL_REFRESH
     }
 
     override suspend fun load(
@@ -68,8 +67,8 @@ class TimeLineRemoteMediator(
             }
         }
         try {
-            val timeResponse = service.create().getTimeLine(page)
-            val timeLines = timeResponse.data
+            val response = service.create().getTimeLine(page)
+            val timeLines = response.data
             val endOfPaginationReached: Boolean = timeLines.isEmpty()
 
             appDatabase.withTransaction {

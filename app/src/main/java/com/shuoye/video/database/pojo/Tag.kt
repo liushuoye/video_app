@@ -10,7 +10,7 @@ import androidx.room.PrimaryKey
  * @author shuoye
  * @create 2021-10-23 17:18
  **/
-@Entity
+@Entity(tableName = "tag")
 data class Tag(
     @PrimaryKey
     val id: Int,
