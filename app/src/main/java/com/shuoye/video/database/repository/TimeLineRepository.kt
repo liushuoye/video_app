@@ -1,11 +1,13 @@
 package com.shuoye.video.database.repository
 
+import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.shuoye.video.api.TimeLineService
-import com.shuoye.video.database.repository.pagingSource.TimeLinePagingSource
+import com.shuoye.video.database.AppDatabase
 import com.shuoye.video.database.pojo.TimeLine
+import com.shuoye.video.database.repository.remoteMediator.TimeLineRemoteMediator
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -18,12 +20,16 @@ import javax.inject.Inject
  **/
 
 class TimeLineRepository @Inject constructor(
-    private val service: TimeLineService
+    private val service: TimeLineService,
+    private val appDatabase: AppDatabase
 ) {
-    fun getTimeLine(): Flow<PagingData<TimeLine>> {
+
+    fun getTimeLines(wd: Int): Flow<PagingData<TimeLine>> {
+        @OptIn(ExperimentalPagingApi::class)
         return Pager(
             config = PagingConfig(enablePlaceholders = false, pageSize = NETWORK_PAGE_SIZE),
-            pagingSourceFactory = { TimeLinePagingSource(service) }
+            remoteMediator = TimeLineRemoteMediator(service, appDatabase),
+            pagingSourceFactory = { appDatabase.timeLineDao().findByWd(wd) }
         ).flow
     }
 

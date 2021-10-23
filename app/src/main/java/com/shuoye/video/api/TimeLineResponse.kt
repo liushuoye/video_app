@@ -12,7 +12,7 @@ import com.shuoye.video.database.pojo.TimeLine
  **/
 data class TimeLineResponse(
     val code: Int,
-    val data: List<TimeLine>,
+    val data: List<TimeLine> = emptyList(),
     val msg: String
 ) {
 }

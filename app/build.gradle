@@ -37,6 +37,7 @@ android {
         // work-runtime-ktx 2.1.0 及更高版本现在需要 Java 8
         jvmTarget = "1.8"
 
+        freeCompilerArgs += ["-Xopt-in=kotlin.RequiresOptIn"]
         // 启用协程和流 API
         freeCompilerArgs += "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
         freeCompilerArgs += "-Xopt-in=kotlinx.coroutines.FlowPreview"
@@ -76,13 +77,13 @@ dependencies {
     def paging_version = "3.0.1"
     implementation "androidx.paging:paging-runtime-ktx:$paging_version"
     // 或者 - 没有用于测试的 Android 依赖项
-    testImplementation "androidx.paging:paging-common-ktx:$paging_version"
+//    testImplementation "androidx.paging:paging-common-ktx:$paging_version"
     // 可选 - RxJava2 支持
-    implementation "androidx.paging:paging-rxjava2-ktx:$paging_version"
+//    implementation "androidx.paging:paging-rxjava2-ktx:$paging_version"
     // 可选 - RxJava3 支持
-    implementation "androidx.paging:paging-rxjava3:$paging_version"
+//    implementation "androidx.paging:paging-rxjava3:$paging_version"
     // 可选 - Guava ListenableFuture 支持
-    implementation "androidx.paging:paging-guava:$paging_version"
+//    implementation "androidx.paging:paging-guava:$paging_version"
 
     /////////////////////////////////////////////////////////////////////////////////////////////
     ///Room 持久性库
@@ -115,7 +116,7 @@ dependencies {
     // 测试导航
     androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
     // Jetpack Compose 集成
-    implementation "androidx.navigation:navigation-compose:2.4.0-alpha10"
+//    implementation "androidx.navigation:navigation-compose:2.4.0-alpha10"
 
     /////////////////////////////////////////////////////////////////////////////////////////////
     /// lifecycle
@@ -169,6 +170,10 @@ dependencies {
     implementation "com.google.code.gson:gson:2.8.6"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2"
+
+
+    // 改造
+    implementation "com.squareup.retrofit2:retrofit-mock:2.9.0"
 
 
 //    // 测试依赖

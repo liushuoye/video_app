@@ -1,8 +1,10 @@
 package com.shuoye.video.database.dao
 
+import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import com.shuoye.video.database.pojo.TimeLine
 
 /**
@@ -13,10 +15,17 @@ import com.shuoye.video.database.pojo.TimeLine
  * @create 2021-10-23 00:27
  **/
 @Dao
-interface TimeLineDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(timeLine: TimeLine)
+interface TimeLineDao : BaseDao<TimeLine> {
 
+    @Query("SELECT * FROM time_line WHERE wd = :wd")
+    fun findByWd(wd: Int): PagingSource<Int, TimeLine>
+
+    /**
+     * 批量插入
+     */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun inserts(timeLines: List<TimeLine>)
+    suspend fun inserts(vararg: List<TimeLine>)
+
+    @Query("DELETE FROM time_line")
+    suspend fun clear()
 }
