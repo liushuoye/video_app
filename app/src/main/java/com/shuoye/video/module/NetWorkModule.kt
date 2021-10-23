@@ -1,6 +1,6 @@
 package com.shuoye.video.module
 
-import com.shuoye.video.api.TimeLineService
+import com.shuoye.video.api.NetWorkManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -8,19 +8,19 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 /**
- * 依赖注入模块
- * @program video
- * @ClassName TimeLineModule
+ * TODO
+ * @program Video
+ * @ClassName NetWorkModule
  * @author shuoye
- * @create 2021-10-22 12:34
+ * @create 2021-10-23 16:17
  **/
-@Module
 @InstallIn(SingletonComponent::class)
-class TimeLineModule {
+@Module
+class NetWorkModule {
 
     @Singleton
     @Provides
-    fun getTimeLineService(): TimeLineService {
-        return TimeLineService.create()
+    fun provideNetWorkManager(): NetWorkManager {
+        return NetWorkManager.getInstance()
     }
 }

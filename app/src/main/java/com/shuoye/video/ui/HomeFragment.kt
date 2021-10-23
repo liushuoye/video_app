@@ -1,7 +1,6 @@
 package com.shuoye.video.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,14 +31,7 @@ class HomeFragment : Fragment() {
         binding.timeline.layoutManager = LinearLayoutManager(context)
         binding.timeline.adapter = adapter
         lifecycleScope.launch {
-            viewModel.getTimeLines().collectLatest {
-                Log.d(
-                    "liu_shuoye", "onCreateView: ${
-                        it.also {
-                            it.toString()
-                        }
-                    }"
-                )
+            viewModel.getTimeLines(1).collectLatest {
                 adapter.submitData(it)
             }
         }
