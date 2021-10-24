@@ -1,18 +1,16 @@
 package com.shuoye.video.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.navigation.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import com.shuoye.video.TAG
 import com.shuoye.video.adapters.BannerDataAdapters
 import com.shuoye.video.database.pojo.Banner
 import com.shuoye.video.databinding.FragmentHometBinding
@@ -21,7 +19,6 @@ import com.shuoye.video.utils.Utils
 import com.youth.banner.indicator.CircleIndicator
 import com.youth.banner.listener.OnBannerListener
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.util.*
 
@@ -50,25 +47,26 @@ class HomeFragment : Fragment() {
      * 设置轮播图适配器
      */
     private fun setBannerAdapter(binding: FragmentHometBinding) {
-        adapter = BannerDataAdapters(viewModel.banner)
-        binding.banner.setAdapter(ImageBannerAdapter(viewModel.banner))
+
         binding.banner
             // 添加生命周期观察者
             .addBannerLifecycleObserver(this)
             // 设置轮播指示器(显示在banner上)
             .setIndicator(CircleIndicator(context))
             .setLoopTime(4000)
-            // 设置点击事件
-            .setOnBannerListener(OnBannerListener<Banner>() { banner: Banner?, position: Int ->
-                Log.d(TAG, "onCreateView: 你点击了第${position}张图${banner?.title}")
-            })
-        binding.bannerData.adapter = adapter
-        binding.bannerData.layoutManager = LinearLayoutManager(context)
-        lifecycleScope.launch {
-            viewModel.getBanner().collectLatest {
-                adapter?.submitData(it)
+
+        viewModel.getBannerLiveData().observe(viewLifecycleOwner, {
+            it.data?.let { it1 -> viewModel.banner.addAll(it1) }
+            lifecycleScope.launch {
+                binding.banner.setAdapter(ImageBannerAdapter(viewModel.banner))
+                    // 设置点击事件
+                    .setOnBannerListener(OnBannerListener() { banner: Banner, _: Int ->
+                        val action =
+                            HomeFragmentDirections.actionHomeFragmentToAnimeInfoFragment(banner.id)
+                        binding.root.findNavController().navigate(action)
+                    })
             }
-        }
+        })
     }
 
     /**

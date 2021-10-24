@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">Video</string>
+
     <string name="TODO">图片</string>
+    <string name="dot">·</string>
+    <string name="original_name">原版名称：</string>
+    <string name="status">播放状态：</string>
+    <string name="tag">剧情类型：</string>
+    <string name="production_company">制作公司：</string>
+    <string name="introduction">简介：</string>
+    <string name="premiere_time">首播时间：</string>
 </resources>

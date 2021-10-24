@@ -32,7 +32,7 @@ class BannerRemoteMediator(
         // 追加直到刷新成功。在我们不介意显示过时的情况下，
         // 缓存离线数据，我们可以返回 SKIP_INITIAL_REFRESH 来防止分页
         // 触发远程刷新。LAUNCH_INITIAL_REFRESH
-        return InitializeAction.SKIP_INITIAL_REFRESH
+        return InitializeAction.LAUNCH_INITIAL_REFRESH
     }
 
     override suspend fun load(

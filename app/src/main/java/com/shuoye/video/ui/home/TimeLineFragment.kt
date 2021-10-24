@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.shuoye.video.databinding.FragmentRecyclerViewBinding
-import com.shuoye.video.ui.home.adapters.TimeLineAdapter
+import com.shuoye.video.ui.home.adapters.TimeLinePagingAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -24,7 +24,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class TimeLineFragment(val wd: Int) : Fragment() {
     private val viewModel: TimeLineViewModel by viewModels()
-    private val adapter = TimeLineAdapter()
+    private val adapter = TimeLinePagingAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,

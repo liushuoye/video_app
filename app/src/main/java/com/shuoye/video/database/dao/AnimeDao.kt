@@ -1,6 +1,6 @@
 package com.shuoye.video.database.dao
 
-import androidx.paging.PagingSource
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Transaction
@@ -17,6 +17,6 @@ import com.shuoye.video.database.pojo.Anime
 interface AnimeDao {
     @Transaction
     @Query("SELECT * FROM anime_info WHERE id = :id")
-    fun findById(id: Int): PagingSource<Int, Anime>
+    fun findById(id: Int): LiveData<Anime>
 
 }

@@ -16,5 +16,6 @@ data class Banner(
     val id: Int,
     val title: String,
     val picUrl: String,
-    val time: Long
+    val time: Long,
+    var updatesTime: Long = System.currentTimeMillis()
 )

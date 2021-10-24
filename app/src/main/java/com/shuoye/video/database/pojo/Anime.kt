@@ -23,4 +23,12 @@ data class Anime(
         entityColumn = "seriesName"
     )
     val series: List<AnimeInfo>
-)
+) {
+    fun tags(): String {
+        var tagList = ""
+        tags.forEach {
+            tagList += it.name + " "
+        }
+        return tagList
+    }
+}

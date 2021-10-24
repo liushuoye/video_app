@@ -17,12 +17,12 @@ interface BaseDao<T> {
      * 插入更新
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(vararg: T)
+    fun insert(vararg: T)
 
     /**
      * 批量插入
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(vararg: List<T>)
+    fun insert(vararg: List<T>)
 
 }

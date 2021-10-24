@@ -1,5 +1,7 @@
 package com.shuoye.video.api
 
+import com.shuoye.video.api.converter.LiveDataCallAdapterFactory
+import com.shuoye.video.api.request.Request
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -53,6 +55,7 @@ class NetWorkManager {
         retrofit = Retrofit.Builder()
             .client(client)
             .baseUrl(Request.HOST)
+            .addCallAdapterFactory(LiveDataCallAdapterFactory())
             //支持返回原始String
             .addConverterFactory(ScalarsConverterFactory.create())
             //支持返回FastJson解析后的实体类

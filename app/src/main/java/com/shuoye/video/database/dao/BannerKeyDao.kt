@@ -3,6 +3,7 @@ package com.shuoye.video.database.dao
 import androidx.room.Dao
 import androidx.room.Query
 import com.shuoye.video.database.pojo.BannerKey
+import com.shuoye.video.database.pojo.TimeLineKey
 
 /**
  * TODO
@@ -14,5 +15,12 @@ import com.shuoye.video.database.pojo.BannerKey
 @Dao
 interface BannerKeyDao : BaseDao<BannerKey> {
     @Query("DELETE FROM banner_key")
-    fun clear()
+    suspend fun clear()
+
+    /**
+     * 根据 id 查找
+     */
+    @Query("SELECT * FROM banner_key WHERE id=:id")
+    fun findKeyById(id: Int): TimeLineKey?
+
 }

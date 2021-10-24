@@ -1,9 +1,11 @@
 package com.shuoye.video.ui.home
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import com.shuoye.video.api.request.Resource
 import com.shuoye.video.database.pojo.Banner
 import com.shuoye.video.database.repository.BannerRepository
 import com.shuoye.video.database.repository.TimeLineRepository
@@ -32,5 +34,9 @@ class HomeViewModel @Inject constructor(
         val newResult = bannerRepository.getBanners().cachedIn(viewModelScope)
         banners = newResult
         return newResult
+    }
+
+    fun getBannerLiveData(): LiveData<Resource<List<Banner>>> {
+        return bannerRepository.getBannerLiveData()
     }
 }

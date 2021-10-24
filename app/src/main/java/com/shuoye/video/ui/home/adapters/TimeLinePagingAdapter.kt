@@ -11,11 +11,11 @@ import com.shuoye.video.databinding.ItemTimeLineBinding
 /**
  * TODO
  * @program Video
- * @ClassName TimeLineAdapter
+ * @ClassName TimeLinePagingAdapter
  * @author shuoye
  * @create 2021-10-24 15:45
  **/
-class TimeLineAdapter() :
+class TimeLinePagingAdapter() :
     PagingDataAdapter<TimeLine, ViewHolder<ItemTimeLineBinding>>(DiffCallback()) {
 
     override fun onCreateViewHolder(
