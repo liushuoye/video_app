@@ -1,6 +1,8 @@
 package com.shuoye.video.database.pojo
 
-import androidx.room.*
+import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
 
 
 /**
@@ -150,5 +152,10 @@ data class AnimeInfo(
      * 播放链接
      */
     val players: String?,
-)
+) {
+    @Ignore
+    val series: List<AnimeInfo> = emptyList()
+    @Ignore
+    val tags: List<Tag> = emptyList()
+}
 

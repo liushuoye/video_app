@@ -7,41 +7,30 @@ import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import com.shuoye.video.api.NetWorkManager
 import com.shuoye.video.database.AppDatabase
-import com.shuoye.video.database.pojo.Banner
-import com.shuoye.video.database.pojo.BannerKey
+import com.shuoye.video.database.pojo.RecommendedDaily
 import retrofit2.HttpException
 import java.io.IOException
-
-private const val GITHUB_STARTING_PAGE_INDEX = 1
 
 /**
  * TODO
  * @program Video
- * @ClassName BannerRemoteMediator
+ * @ClassName RecentUpdatesRemoteMediator
  * @author shuoye
- * @create 2021-10-23 01:34
+ * @create 2021-10-24 11:07
  **/
 @OptIn(ExperimentalPagingApi::class)
-class BannerRemoteMediator(
+class RecommendedDailyRemoteMediator(
     private val netWorkManager: NetWorkManager,
     private val appDatabase: AppDatabase
-) : RemoteMediator<Int, Banner>() {
-
-    override suspend fun initialize(): InitializeAction {
-        // 分页开始后立即启动远程刷新并且不触发远程前置或
-        // 追加直到刷新成功。在我们不介意显示过时的情况下，
-        // 缓存离线数据，我们可以返回 SKIP_INITIAL_REFRESH 来防止分页
-        // 触发远程刷新。LAUNCH_INITIAL_REFRESH
-        return InitializeAction.SKIP_INITIAL_REFRESH
-    }
+) : RemoteMediator<Int, RecommendedDaily>() {
 
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, Banner>
+        state: PagingState<Int, RecommendedDaily>
     ): MediatorResult {
-        val page = when (loadType) {
+        when (loadType) {
             LoadType.REFRESH -> {
-                GITHUB_STARTING_PAGE_INDEX
+
             }
             LoadType.PREPEND -> {
                 return MediatorResult.Success(endOfPaginationReached = false)
@@ -51,19 +40,14 @@ class BannerRemoteMediator(
             }
         }
         try {
-            val response = netWorkManager.create().getBanner()
-            val banners = response.data
-            val endOfPaginationReached: Boolean = banners.isEmpty()
-
+            val response = netWorkManager.create().getRecommendedDaily()
+            val recommendedDaily = response.data
+            val endOfPaginationReached = recommendedDaily.isEmpty()
             appDatabase.withTransaction {
                 if (loadType == LoadType.REFRESH) {
-                    // 清除数据库中的所有表
-                    appDatabase.bannerDao().clear()
-                    appDatabase.bannerKeyDao().clear()
+                    appDatabase.recommendedDailyDao().clear()
                 }
-                val keys = BannerKey(page)
-                appDatabase.bannerDao().insert(banners)
-                appDatabase.bannerKeyDao().insert(keys)
+                appDatabase.recommendedDailyDao().insert(recommendedDaily)
             }
             return MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
         } catch (ex: IOException) {

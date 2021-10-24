@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Video"
         android:allowBackup="false"
-        android:fullBackupContent=""
+        android:fullBackupContent="false"
         tools:targetApi="n">
         <activity
             android:name=".ui.MainActivity"

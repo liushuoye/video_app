@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.shuoye.video.database.pojo.Banner
-import com.shuoye.video.database.pojo.TimeLine
 import com.shuoye.video.database.repository.BannerRepository
 import com.shuoye.video.database.repository.TimeLineRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,17 +23,9 @@ class HomeViewModel @Inject constructor(
     private val timeLineRepository: TimeLineRepository,
     private val bannerRepository: BannerRepository
 ) : ViewModel() {
-    private var timeLines: Flow<PagingData<TimeLine>>? = null
     private var banners: Flow<PagingData<Banner>>? = null
     val banner = ArrayList<Banner>()
 
-
-    fun getTimeLines(wd: Int): Flow<PagingData<TimeLine>> {
-        timeLines?.apply { return this }
-        val newResult = timeLineRepository.getTimeLines(wd).cachedIn(viewModelScope)
-        timeLines = newResult
-        return newResult
-    }
 
     fun getBanner(): Flow<PagingData<Banner>> {
         banners?.apply { return this }

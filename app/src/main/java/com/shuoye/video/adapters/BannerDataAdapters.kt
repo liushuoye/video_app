@@ -38,7 +38,9 @@ class BannerDataAdapters(
 
     class ViewHolder(
         binding: ItemTestBinding,
-    ) : RecyclerView.ViewHolder(binding.root)
+    ) : RecyclerView.ViewHolder(binding.root) {
+    }
+
 }
 
 

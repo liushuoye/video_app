@@ -17,8 +17,8 @@ interface TimeLineKeyDao : BaseDao<TimeLineKey> {
     /**
      * 根据 id 查找
      */
-    @Query("SELECT * FROM time_line_key WHERE id=:id")
-    suspend fun findKeyById(id: Int): TimeLineKey?
+    @Query("SELECT * FROM time_line_key WHERE id=:wd")
+    suspend fun findKeyById(wd: Int): TimeLineKey?
 
     /**
      * 清空表

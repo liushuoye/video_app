@@ -1,6 +1,7 @@
 package com.shuoye.video.database.dao
 
 import androidx.room.Dao
+import androidx.room.Query
 import com.shuoye.video.database.pojo.AnimeInfo
 
 /**
@@ -12,4 +13,6 @@ import com.shuoye.video.database.pojo.AnimeInfo
  **/
 @Dao
 interface AnimeInfoDao : BaseDao<AnimeInfo> {
+    @Query("DELETE FROM anime_info")
+    suspend fun clear()
 }

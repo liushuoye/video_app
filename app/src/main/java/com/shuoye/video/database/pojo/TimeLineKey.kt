@@ -1,6 +1,5 @@
 package com.shuoye.video.database.pojo
 
-import androidx.room.Dao
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -15,7 +14,6 @@ import androidx.room.PrimaryKey
 data class TimeLineKey(
     @PrimaryKey
     val id: Int,
-    val prevKey: Int?,
-    val nextKey: Int?
+    val time: Long = System.currentTimeMillis()
 
 )

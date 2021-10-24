@@ -18,6 +18,8 @@ import com.shuoye.video.database.pojo.*
 @Database(
     entities = [
         TimeLine::class, TimeLineKey::class,
+        RecentUpdates::class,
+        RecommendedDaily::class,
         Banner::class, BannerKey::class,
         Tag::class,
         AnimeInfo::class
@@ -28,10 +30,12 @@ import com.shuoye.video.database.pojo.*
 abstract class AppDatabase : RoomDatabase() {
     abstract fun timeLineDao(): TimeLineDao
     abstract fun timeLineKeyDao(): TimeLineKeyDao
+    abstract fun recentUpdatesDao(): RecentUpdatesDao
+    abstract fun recommendedDailyDao(): RecommendedDailyDao
     abstract fun bannerDao(): BannerDao
     abstract fun bannerKeyDao(): BannerKeyDao
     abstract fun tagDao(): TagDao
-    abstract fun animeInfo(): AnimeInfoDao
+    abstract fun animeInfoDao(): AnimeInfoDao
     abstract fun animeDao(): AnimeDao
 
     companion object {

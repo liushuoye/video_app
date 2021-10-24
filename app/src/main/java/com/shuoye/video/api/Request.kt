@@ -1,7 +1,6 @@
 package com.shuoye.video.api
 
-import com.shuoye.video.database.pojo.Banner
-import com.shuoye.video.database.pojo.TimeLine
+import com.shuoye.video.database.pojo.*
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -17,9 +16,18 @@ interface Request {
         const val HOST = "http://47.106.154.121:8080/video/api/"
     }
 
-    @GET("anime/time_line")
-    suspend fun getTimeLine(@Query("wd") wd: Int): Response<TimeLine>
-
     @GET("banner/banner_data")
     suspend fun getBanner(): Response<Banner>
+
+    @GET("home/time_line")
+    suspend fun getTimeLine(@Query("wd") wd: Int): Response<TimeLine>
+
+    @GET("home/recent_updates")
+    suspend fun getRecentUpdates(): Response<RecentUpdates>
+
+    @GET("home/recommended_daily")
+    suspend fun getRecommendedDaily(): Response<RecommendedDaily>
+
+    @GET("anime/info")
+    suspend fun getAnimeInfo(@Query("id") id: Int): Response<AnimeInfo>
 }

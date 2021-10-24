@@ -1,6 +1,7 @@
 package com.shuoye.video.database.dao
 
 import androidx.room.Dao
+import androidx.room.Query
 import com.shuoye.video.database.pojo.Tag
 
 /**
@@ -12,4 +13,6 @@ import com.shuoye.video.database.pojo.Tag
  **/
 @Dao
 interface TagDao : BaseDao<Tag> {
+    @Query("DELETE FROM tag")
+    suspend fun clear()
 }

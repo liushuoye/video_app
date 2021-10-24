@@ -20,20 +20,25 @@ import javax.inject.Inject
  **/
 
 class TimeLineRepository @Inject constructor(
-    private val service: NetWorkManager,
+    private val netWorkManager: NetWorkManager,
     private val appDatabase: AppDatabase
 ) {
-    private val config = PagingConfig(enablePlaceholders = false, pageSize = NETWORK_PAGE_SIZE)
+    private val config = PagingConfig(
+        enablePlaceholders = false,
+        pageSize = NETWORK_PAGE_SIZE,
+        prefetchDistance = 1,
+    )
+
     fun getTimeLines(wd: Int): Flow<PagingData<TimeLine>> {
         @OptIn(ExperimentalPagingApi::class)
         return Pager(
             config = config,
-            remoteMediator = TimeLineRemoteMediator(service, appDatabase),
+            remoteMediator = TimeLineRemoteMediator(netWorkManager, appDatabase, wd),
             pagingSourceFactory = { appDatabase.timeLineDao().findByWd(wd) }
         ).flow
     }
 
     companion object {
-        private const val NETWORK_PAGE_SIZE = 25
+        private const val NETWORK_PAGE_SIZE = 10
     }
 }
