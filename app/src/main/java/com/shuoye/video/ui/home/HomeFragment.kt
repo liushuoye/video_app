@@ -56,6 +56,7 @@ class HomeFragment : Fragment() {
             .setLoopTime(4000)
 
         viewModel.getBannerLiveData().observe(viewLifecycleOwner, {
+            viewModel.banner.clear()
             it.data?.let { it1 -> viewModel.banner.addAll(it1) }
             lifecycleScope.launch {
                 binding.banner.setAdapter(ImageBannerAdapter(viewModel.banner))

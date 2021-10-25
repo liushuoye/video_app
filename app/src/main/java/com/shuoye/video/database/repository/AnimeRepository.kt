@@ -1,7 +1,9 @@
 package com.shuoye.video.database.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import com.shuoye.video.AppExecutors
+import com.shuoye.video.TAG
 import com.shuoye.video.api.NetWorkManager
 import com.shuoye.video.api.request.Resource
 import com.shuoye.video.api.response.ApiResponse
@@ -22,9 +24,7 @@ class AnimeRepository @Inject constructor(
     private val appDatabase: AppDatabase,
     private val appExecutors: AppExecutors,
 ) {
-    companion object {
-        private const val NETWORK_PAGE_SIZE = 10
-    }
+
 
     fun getTest(id: Int): LiveData<ApiResponse<AnimeInfo>> {
         return netWorkManager.create().getAnimeInfo(id)
@@ -33,8 +33,16 @@ class AnimeRepository @Inject constructor(
     fun getAnime(id: Int): LiveData<Resource<Anime>> {
         return object : NetworkBoundResource<Anime, AnimeInfo>(appExecutors) {
             override fun saveCallResult(item: AnimeInfo) {
+                Log.d(TAG, "saveCallResult: $item")
                 appDatabase.animeInfoDao().insert(item.series)
-                appDatabase.tagDao().insert(item.tags)
+                item.series.forEach() {
+                    Log.d(TAG, "saveCallResult: tag:${it.tags}")
+                    if (it.id == 0) {
+                        appDatabase.tagDao().insert(it.tags)
+                    }
+
+                }
+
             }
 
             override fun shouldFetch(data: Anime?): Boolean {

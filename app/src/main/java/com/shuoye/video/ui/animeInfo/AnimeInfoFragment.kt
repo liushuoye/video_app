@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.shuoye.video.databinding.FragmentAnimeInfoBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,6 +34,10 @@ class AnimeInfoFragment : Fragment() {
         context ?: return binding.root
         viewModel.getAnime(args.animeInfoId).observe(viewLifecycleOwner, {
             binding.anime = it.data
+            Glide.with(binding.root)
+                .load(binding.anime?.animeInfo?.cover)
+                .apply(RequestOptions.bitmapTransform(RoundedCorners(30)))
+                .into(binding.cover)
         })
         return binding.root
     }
