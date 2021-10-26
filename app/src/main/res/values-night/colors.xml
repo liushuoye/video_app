@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-
-
     <color name="translucent" tools:ignore="MissingDefaultResource">#01000000</color>
-    <!-- 红色 -->
     <color name="red50">#fde0dc</color>
     <color name="red100">#f9bdbb</color>
     <color name="red200">#f69988</color>
@@ -24,7 +15,7 @@
     <color name="reda200">#ff5177</color>
     <color name="reda400">#ff2d6f</color>
     <color name="reda700">#e00032</color>
-    <!--桃红-->
+
     <color name="pink50">#fce4ec</color>
     <color name="pink100">#f8bbd0</color>
     <color name="pink200">#f48fb1</color>
@@ -35,13 +26,11 @@
     <color name="pink700">#c2185b</color>
     <color name="pink800">#ad1457</color>
     <color name="pink900">#880e4f</color>
-    <!--粉色的-->
     <color name="pinka100">#ff80ab</color>
     <color name="pinka200">#ff4081</color>
     <color name="pinka400">#f50057</color>
     <color name="pinka700">#c51162</color>
 
-    <!--紫色-->
     <color name="purple50">#f3e5f5</color>
     <color name="purple100">#e1bee7</color>
     <color name="purple200">#ce93d8</color>
@@ -52,12 +41,11 @@
     <color name="purple700">#7b1fa2</color>
     <color name="purple800">#6a1b9a</color>
     <color name="purple900">#4a148c</color>
-    <!--紫罗兰-->
     <color name="purplea100">#ea80fc</color>
     <color name="purplea200">#e040fb</color>
     <color name="purplea400">#d500f9</color>
     <color name="purplea700">#aa00ff</color>
-    <!--深紫色-->
+
     <color name="deeppurple50">#ede7f6</color>
     <color name="deeppurple100">#d1c4e9</color>
     <color name="deeppurple200">#b39ddb</color>
@@ -68,7 +56,6 @@
     <color name="deeppurple700">#512da8</color>
     <color name="deeppurple800">#4527a0</color>
     <color name="deeppurple900">#311b92</color>
-    <!--深紫色-->
     <color name="deeppurplea100">#b388ff</color>
     <color name="deeppurplea200">#7c4dff</color>
     <color name="deeppurplea400">#651fff</color>
@@ -84,7 +71,6 @@
     <color name="indigo700">#303f9f</color>
     <color name="indigo800">#283593</color>
     <color name="indigo900">#1a237e</color>
-
     <color name="indigoa100">#8c9eff</color>
     <color name="indigoa200">#536dfe</color>
     <color name="indigoa400">#3d5afe</color>
@@ -115,7 +101,6 @@
     <color name="lightblue700">#0288d1</color>
     <color name="lightblue800">#0277bd</color>
     <color name="lightblue900">#01579b</color>
-
     <color name="lightbluea100">#80d8ff</color>
     <color name="lightbluea200">#40c4ff</color>
     <color name="lightbluea400">#00b0ff</color>
@@ -131,7 +116,6 @@
     <color name="cyan700">#0097a7</color>
     <color name="cyan800">#00838f</color>
     <color name="cyan900">#006064</color>
-
     <color name="cyana100">#84ffff</color>
     <color name="cyana200">#18ffff</color>
     <color name="cyana400">#00e5ff</color>
@@ -295,21 +279,21 @@
     <color name="night">#303030</color>
     <color name="bold">#424242</color>
 
-    <color name="colorPrimary">#FFF</color>
-    <color name="colorPrimaryDark">#bdbdbd</color>
+    <color name="colorPrimary">#303030</color>
+    <color name="colorPrimaryDark">#303030</color>
     <color name="colorAccent">#ff4081</color>
-    <color name="toolbar_color">#000000</color>
-    <color name="tabTextColor">#000000</color>
+    <color name="toolbar_color">#FFF</color>
+    <color name="tabTextColor">#FFF</color>
     <color name="tabSelectedTextColor">#ff4081</color>
-    <color name="navigationView_bg_color">#FFF</color>
-    <color name="window_bg">#FFF</color>
-    <color name="toolbar_layout_bg">#bdbdbd</color>
-    <color name="item_stroke">#F2F2F2</color>
-    <color name="text_color_primary">#000</color>
+    <color name="navigationview_bg_color">#303030</color>
+    <color name="window_bg">#303030</color>
+    <color name="toolbar_layout_bg">#303030</color>
+    <color name="item_stroke">#424242</color>
+    <color name="text_color_primary">#FFF</color>
     <color name="item_selected_color">#FFF</color>
-    <color name="jd_bg">#000</color>
+    <color name="jd_bg">#FFF</color>
     <color name="white">#FFF</color>
-    <color name="drama">#fdfdfd</color>
+    <color name="drama">#424242</color>
 
     <color name="light_toolbar_color">#FFF</color>
     <color name="light_toolbar_color_lt23">#bdbdbd</color>

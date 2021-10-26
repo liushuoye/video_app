@@ -68,6 +68,18 @@ dependencies {
     // Glide v4 : 快速高效的Android图片加载库
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+    // 高度自定义的安卓视频框架 https://github.com/Jzvd/JZVideo
+    implementation 'cn.jzvd:jiaozivideoplayer:7.7.0'
+    // 适用于 Android 的可扩展媒体播放器 https://github.com/google/ExoPlayer
+    implementation 'com.google.android.exoplayer:exoplayer:2.15.1'
+    // 强大而灵活的RecyclerView Adapter   https://github.com/CymChad/BaseRecyclerViewAdapterHelper
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.6'
+    // Android 和 Java 的事件总线，简化了活动、片段、线程、服务等之间的通信。更少的代码，更好的质量。   https://github.com/greenrobot/EventBus
+    implementation 'org.greenrobot:eventbus:3.2.0'
+    // 通常的吐司，但加了类固醇 https://github.com/GrenderG/Toasty
+    implementation 'com.github.GrenderG:Toasty:1.5.0'
+    //StatusBarUtil 状态栏工具类（实现沉浸式状态栏/变色状态栏）
+    implementation 'com.jaeger.statusbarutil:library:1.4.0'
 
     /////////////////////////////////////////////////////////////////////////////////////////////
     ///网络请求框架 Retrofit2 + Okhttp3
