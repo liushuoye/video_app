@@ -68,7 +68,10 @@ dependencies {
     // Glide v4 : 快速高效的Android图片加载库
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
-
+    // 高度自定义的安卓视频框架 https://github.com/Jzvd/JZVideo
+    implementation 'cn.jzvd:jiaozivideoplayer:7.7.0'
+    // 适用于 Android 的可扩展媒体播放器 https://github.com/google/ExoPlayer
+    implementation 'com.google.android.exoplayer:exoplayer:2.15.1'
     /////////////////////////////////////////////////////////////////////////////////////////////
     ///网络请求框架 Retrofit2 + Okhttp3
     implementation 'com.squareup.okhttp3:okhttp:4.9.2'
