@@ -18,5 +18,19 @@
         <argument
             android:name="animeInfoId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_animeInfoFragment_to_playerActivity"
+            app:destination="@id/playerActivity" />
     </fragment>
+    <activity
+        android:id="@+id/playerActivity"
+        android:name="com.shuoye.video.ui.player.PlayerActivity"
+        android:label="PlayerActivity" >
+        <argument
+            android:name="animeInfoId"
+            app:argType="integer" />
+        <argument
+            android:name="animeInfoTitle"
+            app:argType="string" />
+    </activity>
 </navigation>

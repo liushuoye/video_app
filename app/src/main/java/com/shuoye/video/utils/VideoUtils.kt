@@ -1,7 +1,7 @@
 package com.shuoye.video.utils
 
 /**
- * TODO
+ * 视频播放工具类
  * @program Video
  * @ClassName VideoUtils
  * @author shuoye

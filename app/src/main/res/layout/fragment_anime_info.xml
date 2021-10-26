@@ -167,6 +167,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -179,6 +180,24 @@
                 android:layout_height="wrap_content"
                 android:text="@{@string/introduction+anime.animeInfo.introduction}"
                 tools:text="简介：电视动画《青春猪头少年不会梦到兔女郎学姐》改编自鸭志田一著作、沟口凯吉插画的轻小说《青春猪头少年系列》，于2018年3月10日在电击文库的新作情报发布会上宣布了动画化的消息。动画由CloverWorks负责制作，于2018年10月播出。 思春期症候群——这是一种只发生在易敏感和不稳定的青春期的、不可思议的现象" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <Button
+                android:id="@+id/play"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/play" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

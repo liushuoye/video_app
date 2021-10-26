@@ -29,7 +29,17 @@ class VideoApplication : Application() {
     }
 
 
+    /**
+     * 显示成功 Toast 消息
+     */
     fun showSuccessToastMsg(msg: String) {
         Toasty.success(applicationContext, msg, Toast.LENGTH_LONG, true).show()
+    }
+
+    /**
+     * 显示吐司消息
+     */
+    fun showToastMsg(msg: String?) {
+        Toasty.warning(applicationContext, msg!!, Toast.LENGTH_LONG, true).show()
     }
 }

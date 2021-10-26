@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -39,6 +40,13 @@ class AnimeInfoFragment : Fragment() {
                 .apply(RequestOptions.bitmapTransform(RoundedCorners(30)))
                 .into(binding.cover)
         })
+        binding.play.setOnClickListener { view ->
+            val action = AnimeInfoFragmentDirections.actionAnimeInfoFragmentToPlayerActivity(
+                binding.anime!!.animeInfo.id,
+                binding.anime!!.animeInfo.name
+            )
+            view.findNavController().navigate(action)
+        }
         return binding.root
     }
 }

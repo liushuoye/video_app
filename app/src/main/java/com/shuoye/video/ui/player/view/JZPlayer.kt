@@ -2,7 +2,9 @@ package com.shuoye.video.ui.player.view
 
 import android.content.Context
 import android.content.DialogInterface
+import android.os.Bundle
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
@@ -87,10 +89,6 @@ class JZPlayer : JzvdStd {
                     changeUiToPlayingClear()
                     ibLock!!.setImageResource(R.drawable.player_btn_locking_pre)
                     Toast.makeText(mcontext, "屏幕锁定开启", Toast.LENGTH_SHORT).show()
-                    //                    Drawable up = ContextCompat.getDrawable(mcontext,R.drawable.player_btn_locking_pre);
-//                    Drawable drawableUp= DrawableCompat.wrap(up);
-//                    DrawableCompat.setTint(drawableUp, ContextCompat.getColor(mcontext,R.color.colorAccent));
-//                    ibLock.setImageDrawable(drawableUp);
                 }
                 locked = !locked
             }
@@ -112,6 +110,7 @@ class JZPlayer : JzvdStd {
                     mediaInterface.seekTo(duration)
                 }
             }
+            // 快退
             R.id.quick_retreat -> {
                 //当前时间
                 val quickRetreatCurrentPositionWhenPlaying =
@@ -129,6 +128,7 @@ class JZPlayer : JzvdStd {
                     mediaInterface.seekTo(0)
                 }
             }
+            // 播放倍数
             R.id.tvSpeed -> {
                 if (currentSpeedIndex == 7) {
                     currentSpeedIndex = 0
@@ -138,22 +138,21 @@ class JZPlayer : JzvdStd {
                 mediaInterface.setSpeed(getSpeedFromIndex(currentSpeedIndex))
                 tvSpeed!!.text = "倍数X" + getSpeedFromIndex(currentSpeedIndex)
             }
-            /*
             R.id.airplay -> {
                 val bundle = Bundle()
                 Log.e("duration", duration.toString() + "")
                 Log.e("playUrl", jzDataSource.currentUrl.toString())
                 bundle.putString("playUrl", jzDataSource.currentUrl.toString())
                 bundle.putLong("duration", duration)
-                mcontext!!.startActivity(
-                    Intent(
-                        mcontext,
-                        DLNAActivity::class.java
-                    ).putExtras(bundle)
-                )
+                // TODO 投屏
+//                mcontext!!.startActivity(
+//                    Intent(
+//                        mcontext,
+//                        DLNAActivity::class.java
+//                    ).putExtras(bundle)
+//                )
             }
 
-             */
         }
     }
 

@@ -1,13 +1,21 @@
 package com.shuoye.video.utils
 
 import android.app.Activity
+import android.content.ActivityNotFoundException
+import android.content.Context
+import android.content.Intent
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.annotation.ArrayRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
+import androidx.browser.customtabs.CustomTabsIntent
 import com.shuoye.video.R
+import com.shuoye.video.VideoApplication
 import java.util.*
 
 /**
@@ -55,8 +63,8 @@ object Utils {
     /**
      * 获取文本
      */
-    fun getString(activity: Activity, @StringRes id: Int): String {
-        return activity.baseContext.resources.getString(id)
+    fun getString(@StringRes id: Int): String {
+        return VideoApplication.getInstance().baseContext.resources.getString(id)
     }
 
     /**
@@ -72,7 +80,7 @@ object Utils {
         val msg = view.findViewById<TextView>(R.id.msg)
         root.setBackgroundColor(activity.resources.getColor(R.color.window_bg))
         msg.setTextColor(activity.resources.getColor(R.color.text_color_primary))
-        msg.setText(getString(activity, id))
+        msg.setText(getString(id))
         builder.setCancelable(false)
         alertDialog = builder.setView(view).create()
         alertDialog.show()
@@ -87,5 +95,41 @@ object Utils {
         alertDialog?.dismiss()
     }
 
+    fun getArray(@ArrayRes id: Int): Array<String> {
 
+        return VideoApplication.getInstance().baseContext.resources.getStringArray(id)
+    }
+
+    /**
+     * 选择视频播放器
+     *
+     */
+    fun selectVideoPlayer(context: Context, url: String) {
+        val intent = Intent()
+        intent.action = Intent.ACTION_VIEW
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        intent.setDataAndType(Uri.parse(url), "video/*")
+        try {
+            context.startActivity(Intent.createChooser(intent, "请选择视频播放器"))
+        } catch (e: ActivityNotFoundException) {
+            VideoApplication.getInstance().showToastMsg("没有找到匹配的程序")
+        }
+    }
+
+    /**
+     * 通过浏览器打开
+     * @param context
+     * @param url
+     */
+    fun viewInChrome(context: Context, url: String?) {
+        val builder: CustomTabsIntent.Builder = CustomTabsIntent.Builder()
+        //设置工具栏颜色。
+        builder.setToolbarColor(context.resources.getColor(R.color.night))
+        val closeBitmap =
+            BitmapFactory.decodeResource(context.resources, R.drawable.baseline_close_white_48dp)
+        builder.setCloseButtonIcon(closeBitmap) // 关闭按钮
+        builder.setShowTitle(true) //显示网页标题
+        val customTabsIntent: CustomTabsIntent = builder.build()
+        customTabsIntent.launchUrl(context, Uri.parse(url))
+    }
 }

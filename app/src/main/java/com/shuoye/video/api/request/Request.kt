@@ -36,4 +36,6 @@ interface Request {
     @GET("anime/info")
     fun getAnimeInfo(@Query("id") id: Int): LiveData<ApiResponse<AnimeInfo>>
 
+    @GET("anime/player")
+    fun getPlayer(@Query("id") animeInfoId: Int): LiveData<ApiResponse<List<List<Player>>>>
 }

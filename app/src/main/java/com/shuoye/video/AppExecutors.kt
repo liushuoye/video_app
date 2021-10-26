@@ -26,10 +26,9 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 /**
- * Global executor pools for the whole application.
+ * 整个应用程序的全局执行器池。
  *
- * Grouping tasks like this avoids the effects of task starvation (e.g. disk reads don't wait behind
- * webservice requests).
+ * 像这样对任务进行分组可以避免任务饥饿的影响（例如，磁盘读取不会等待 Web 服务请求之后）。
  */
 @Singleton
 open class AppExecutors(
