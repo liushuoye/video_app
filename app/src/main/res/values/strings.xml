@@ -12,4 +12,6 @@
     <string name="new_title">最新：</string>
     <string name="update">最近更新</string>
     <string name="recommend">每日推荐</string>
+    <string name="genre">动画种类：</string>
+    <string name="originalAuthor">原作：</string>
 </resources>

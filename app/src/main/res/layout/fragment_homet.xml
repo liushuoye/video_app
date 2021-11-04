@@ -53,6 +53,15 @@
                 android:layout_weight="1"
                 android:text="@string/recommend"
                 android:textColor="#00796B" />
+
+            <Button
+                android:id="@+id/search"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/search"
+                android:textColor="#00796B" />
         </LinearLayout>
 
         <com.google.android.material.tabs.TabLayout

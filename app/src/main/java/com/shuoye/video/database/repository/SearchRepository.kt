@@ -6,19 +6,19 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.shuoye.video.api.NetWorkManager
 import com.shuoye.video.database.AppDatabase
-import com.shuoye.video.database.pojo.Update
-import com.shuoye.video.database.repository.remoteMediator.UpdateRemoteMediator
+import com.shuoye.video.database.pojo.Search
+import com.shuoye.video.database.repository.remoteMediator.SearchRemoteMediator
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 /**
  * TODO
  * @program Video
- * @ClassName UpdateRepository
+ * @ClassName SearchRepository
  * @author shuoye
- * @create 2021-11-04 14:49
+ * @create 2021-11-04 20:08
  **/
-class UpdateRepository @Inject constructor(
+class SearchRepository @Inject constructor(
     private val netWorkManager: NetWorkManager,
     private val appDatabase: AppDatabase
 ) {
@@ -32,12 +32,12 @@ class UpdateRepository @Inject constructor(
         prefetchDistance = 1,
     )
 
-    fun getUpdate(): Flow<PagingData<Update>> {
+    fun getSearch(query: String): Flow<PagingData<Search>> {
         @OptIn(ExperimentalPagingApi::class)
         return Pager(
             config = config,
-            remoteMediator = UpdateRemoteMediator(netWorkManager, appDatabase),
-            pagingSourceFactory = { appDatabase.updateDao().findAll() }
+            remoteMediator = SearchRemoteMediator(netWorkManager, appDatabase, query),
+            pagingSourceFactory = { appDatabase.searchDao().findAll() }
         ).flow
     }
 }

@@ -26,8 +26,9 @@ import com.shuoye.video.database.pojo.*
         Player::class,
         Update::class,
         Recommend::class,
+        Search::class,
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -43,6 +44,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun playerDao(): PlayerDao
     abstract fun updateDao(): UpdateDao
     abstract fun recommendDao(): RecommendDao
+    abstract fun searchDao(): SearchDao
 
     companion object {
 

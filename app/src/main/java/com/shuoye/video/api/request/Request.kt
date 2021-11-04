@@ -27,11 +27,11 @@ interface Request {
     @GET("recommend")
     suspend fun getRecommend(): ApiResponse<List<Recommend>>
 
-    @GET("search")
+    @GET("anime/search")
     suspend fun getSearch(
         @Query("query") query: String,
         @Query("page") page: Int,
-    ): ApiResponse<List<Recommend>>
+    ): ApiResponse<List<Search>>
 
 
     @GET("banner/banner_data")

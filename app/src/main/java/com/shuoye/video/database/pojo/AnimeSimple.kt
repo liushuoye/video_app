@@ -78,3 +78,48 @@ data class Recommend(
     @SerializedName("Title")
     val title: String,
 )
+
+@Entity(tableName = "anime_search")
+data class Search(
+    @PrimaryKey
+    @SerializedName("AID")
+    val id: Int,
+
+    @SerializedName("R动画种类")
+    val genre: String?,
+
+    @SerializedName("R动画名称")
+    val name: String,
+
+
+    @SerializedName("R原版名称")
+    val originalName: String?,
+
+    @SerializedName("R原作")
+    val originalAuthor: String?,
+
+    @SerializedName("R制作公司")
+    val productionCompany: String?,
+
+
+    @SerializedName("R首播时间")
+    val premiereTime: String?,
+
+    @SerializedName("R播放状态")
+    val status: String?,
+
+    @SerializedName("R资源类型")
+    val resource: String?,
+
+
+    @SerializedName("R新番标题")
+    val newTitle: String?,
+
+    @SerializedName("R封面图小")
+    val coverSmall: String?,
+
+    @SerializedName("R简介")
+    val introduction: String?,
+
+    val labels: String
+)

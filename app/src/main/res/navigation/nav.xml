@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_homeFragment_to_recommendFragment"
             app:destination="@id/recommendFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/animeInfoFragment"
@@ -53,6 +56,14 @@
         android:label="RecommendFragment" >
         <action
             android:id="@+id/action_recommendFragment_to_animeInfoFragment"
+            app:destination="@id/animeInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.shuoye.video.ui.search.SearchFragment"
+        android:label="SearchFragment" >
+        <action
+            android:id="@+id/action_searchFragment_to_animeInfoFragment"
             app:destination="@id/animeInfoFragment" />
     </fragment>
 </navigation>

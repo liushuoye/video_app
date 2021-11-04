@@ -54,6 +54,10 @@ class HomeFragment : Fragment() {
             val action = HomeFragmentDirections.actionHomeFragmentToRecommendFragment()
             view.findNavController().navigate(action)
         }
+        binding.search.setOnClickListener { view ->
+            val action = HomeFragmentDirections.actionHomeFragmentToSearchFragment()
+            view.findNavController().navigate(action)
+        }
     }
 
     /**
@@ -67,7 +71,10 @@ class HomeFragment : Fragment() {
             // 设置轮播指示器(显示在banner上)
             .setIndicator(CircleIndicator(context))
             .setLoopTime(4000)
-
+        if (model.adapter != null) {
+            binding.banner.setAdapter(model.adapter)
+            return
+        }
         model.getBannerLiveData().observe(viewLifecycleOwner, {
             model.banner.clear()
             it.data?.let { it1 -> model.banner.addAll(it1) }
