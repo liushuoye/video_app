@@ -9,6 +9,7 @@ import com.shuoye.video.api.request.Resource
 import com.shuoye.video.database.pojo.Banner
 import com.shuoye.video.database.repository.BannerRepository
 import com.shuoye.video.database.repository.TimeLineRepository
+import com.shuoye.video.ui.home.adapters.ImageBannerAdapter
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -27,6 +28,7 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
     private var banners: Flow<PagingData<Banner>>? = null
     val banner = ArrayList<Banner>()
+    var adapter: ImageBannerAdapter? = null
 
 
     fun getBanner(): Flow<PagingData<Banner>> {

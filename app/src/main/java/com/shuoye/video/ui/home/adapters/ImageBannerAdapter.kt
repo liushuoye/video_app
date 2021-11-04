@@ -8,6 +8,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.shuoye.video.database.pojo.Banner
 import com.shuoye.video.databinding.ItemBannerImageBinding
+import com.shuoye.video.utils.VideoUtils
 import com.youth.banner.adapter.BannerAdapter
 
 /**
@@ -35,7 +36,9 @@ class ImageBannerAdapter(banners: MutableList<Banner>?) :
             holder.itemView.tag = banner.id
             holder.binding.apply {
                 Glide.with(holder.itemView)
-                    .load(banner.picUrl)
+                    .load(
+                        VideoUtils.getSiteUrl(banner.picUrl)
+                    )
                     .apply(RequestOptions.bitmapTransform(RoundedCorners(30)))
                     .into(this.bannerImage)
                 this.banner = banner

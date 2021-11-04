@@ -31,10 +31,9 @@ class TimeLinePagingAdapter() :
             false
         )
         binding.root.setOnClickListener { view: View ->
-            val action =
-                HomeFragmentDirections.actionHomeFragmentToAnimeInfoFragment(
-                    binding.timeLine?.id ?: 20180213
-                )
+            val action = HomeFragmentDirections.actionHomeFragmentToAnimeInfoFragment(
+                binding.timeLine?.id ?: 20180213
+            )
             view.findNavController().navigate(action)
         }
         return ViewHolder(binding)

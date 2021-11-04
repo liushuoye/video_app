@@ -54,7 +54,7 @@ abstract class NetworkBoundResource<ResultType, RequestType>
         result.addSource(apiResponse) { response ->
             result.removeSource(apiResponse)
             result.removeSource(dbSource)
-            when (response.code) {
+            when (response?.code) {
                 200 -> {
                     appExecutors.diskIO().execute {
                         saveCallResult(processResponse(response))

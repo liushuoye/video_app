@@ -14,7 +14,7 @@ object VideoUtils {
      * @param url
      * @return
      */
-    fun getSiteUrl(url: String): String {
-        return if (url.startsWith("http")) url else "http$url"
+    fun getSiteUrl(url: String?): String {
+        return if (url?.startsWith("http") == true) url else "http:$url"
     }
 }

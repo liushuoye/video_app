@@ -1,4 +1,4 @@
-package com.shuoye.video.ui.home
+package com.shuoye.video.ui.update
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.shuoye.video.databinding.FragmentRecyclerViewBinding
-import com.shuoye.video.ui.home.adapters.TimeLinePagingAdapter
+import com.shuoye.video.ui.update.adapter.UpdatePagingAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -17,31 +17,34 @@ import kotlinx.coroutines.launch
 /**
  * TODO
  * @program Video
- * @ClassName TimeLineFragment
+ * @ClassName UpdateFragment
  * @author shuoye
- * @create 2021-10-24 15:20
+ * @create 2021-11-04 13:31
  **/
 @AndroidEntryPoint
-class TimeLineFragment(val wd: Int) : Fragment() {
-    private val viewModel: TimeLineViewModel by viewModels()
-    private val adapter = TimeLinePagingAdapter()
+class UpdateFragment : Fragment() {
+    private lateinit var binding: FragmentRecyclerViewBinding
+    private val model: UpdateViewModel by viewModels()
+    private val adapter = UpdatePagingAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentRecyclerViewBinding.inflate(inflater, container, false)
+        binding = FragmentRecyclerViewBinding.inflate(inflater, container, false)
         context ?: return binding.root
-
-        binding.recyclerView.layoutManager = LinearLayoutManager(context)
-        binding.recyclerView.adapter = adapter
-        lifecycleScope.launch {
-            viewModel.getTimeLines(wd).collectLatest {
-                adapter.submitData(it)
-            }
-        }
+        init()
         return binding.root
     }
 
+    private fun init() {
+        binding.recyclerView.adapter = adapter
+        binding.recyclerView.layoutManager = LinearLayoutManager(context)
+        lifecycleScope.launch {
+            model.getUpdate().collectLatest {
+                adapter.submitData(it)
+            }
+        }
+    }
 }

@@ -2,13 +2,11 @@ package com.shuoye.video.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil.setContentView
 import com.jaeger.library.StatusBarUtil
 import com.shuoye.video.R
 import com.shuoye.video.databinding.ActivityMainBinding
-import com.shuoye.video.ui.player.PlayerViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

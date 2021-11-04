@@ -11,7 +11,6 @@ import androidx.navigation.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import com.shuoye.video.adapters.BannerDataAdapters
 import com.shuoye.video.database.pojo.Banner
 import com.shuoye.video.databinding.FragmentHometBinding
 import com.shuoye.video.ui.home.adapters.ImageBannerAdapter
@@ -25,22 +24,32 @@ import java.util.*
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
-    private var adapter: BannerDataAdapters? = null
-    private val viewModel: HomeViewModel by viewModels()
+
+    private val model: HomeViewModel by viewModels()
+    private lateinit var binding: FragmentHometBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentHometBinding.inflate(inflater, container, false)
+        binding = FragmentHometBinding.inflate(inflater, container, false)
         context ?: return binding.root
+        init()
+        return binding.root
+    }
 
+    private fun init() {
         // 初始化轮播图
         setBannerAdapter(binding)
         //初始化新番时间表
         initTimeLine(binding)
-        return binding.root
+
+        //初始化点击事件
+        binding.update.setOnClickListener { view ->
+            val action = HomeFragmentDirections.actionHomeFragmentToUpdateFragment()
+            view.findNavController().navigate(action)
+        }
     }
 
     /**
@@ -55,17 +64,20 @@ class HomeFragment : Fragment() {
             .setIndicator(CircleIndicator(context))
             .setLoopTime(4000)
 
-        viewModel.getBannerLiveData().observe(viewLifecycleOwner, {
-            viewModel.banner.clear()
-            it.data?.let { it1 -> viewModel.banner.addAll(it1) }
+        model.getBannerLiveData().observe(viewLifecycleOwner, {
+            model.banner.clear()
+            it.data?.let { it1 -> model.banner.addAll(it1) }
             lifecycleScope.launch {
-                binding.banner.setAdapter(ImageBannerAdapter(viewModel.banner))
-                    // 设置点击事件
-                    .setOnBannerListener(OnBannerListener() { banner: Banner, _: Int ->
-                        val action =
-                            HomeFragmentDirections.actionHomeFragmentToAnimeInfoFragment(banner.id)
-                        binding.root.findNavController().navigate(action)
-                    })
+                if (model.adapter == null) {
+                    model.adapter = ImageBannerAdapter(model.banner)
+                    binding.banner.setAdapter(model.adapter)
+                        // 设置点击事件
+                        .setOnBannerListener(OnBannerListener() { banner: Banner, _: Int ->
+                            val action =
+                                HomeFragmentDirections.actionHomeFragmentToAnimeInfoFragment(banner.id)
+                            binding.root.findNavController().navigate(action)
+                        })
+                }
             }
         })
     }

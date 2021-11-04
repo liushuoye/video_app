@@ -23,7 +23,9 @@ import com.shuoye.video.database.pojo.*
         Banner::class, BannerKey::class,
         Tag::class,
         AnimeInfo::class,
-        Player::class
+        Player::class,
+        Update::class,
+        Recommend::class,
     ],
     version = 1,
     exportSchema = false
@@ -39,6 +41,8 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun animeInfoDao(): AnimeInfoDao
     abstract fun animeDao(): AnimeDao
     abstract fun playerDao(): PlayerDao
+    abstract fun updateDao(): UpdateDao
+    abstract fun recommendDao(): RecommendDao
 
     companion object {
 

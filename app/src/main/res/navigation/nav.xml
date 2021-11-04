@@ -10,6 +10,9 @@
         <action
             android:id="@+id/action_homeFragment_to_animeInfoFragment"
             app:destination="@id/animeInfoFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_updateFragment"
+            app:destination="@id/updateFragment" />
     </fragment>
     <fragment
         android:id="@+id/animeInfoFragment"
@@ -33,4 +36,12 @@
             android:name="animeInfoTitle"
             app:argType="string" />
     </activity>
+    <fragment
+        android:id="@+id/updateFragment"
+        android:name="com.shuoye.video.ui.update.UpdateFragment"
+        android:label="UpdateFragment" >
+        <action
+            android:id="@+id/action_updateFragment_to_animeInfoFragment"
+            app:destination="@id/animeInfoFragment" />
+    </fragment>
 </navigation>

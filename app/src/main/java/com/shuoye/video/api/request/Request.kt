@@ -21,6 +21,19 @@ interface Request {
     @GET("banner/banner_data")
     suspend fun getBanner(): ApiResponse<List<Banner>>
 
+    @GET("updates")
+    suspend fun getUpdate(): ApiResponse<List<Update>>
+
+    @GET("recommend")
+    suspend fun getRecommend(): ApiResponse<List<Recommend>>
+
+    @GET("search")
+    suspend fun getSearch(
+        @Query("query") query: String,
+        @Query("page") page: Int,
+    ): ApiResponse<List<Recommend>>
+
+
     @GET("banner/banner_data")
     fun getBannerTest(): LiveData<ApiResponse<List<Banner>>>
 

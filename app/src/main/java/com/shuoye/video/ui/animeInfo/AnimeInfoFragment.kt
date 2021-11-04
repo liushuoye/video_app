@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.shuoye.video.databinding.FragmentAnimeInfoBinding
+import com.shuoye.video.utils.VideoUtils
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -36,7 +37,9 @@ class AnimeInfoFragment : Fragment() {
         viewModel.getAnime(args.animeInfoId).observe(viewLifecycleOwner, {
             binding.anime = it.data
             Glide.with(binding.root)
-                .load(binding.anime?.animeInfo?.cover)
+                .load(
+                    VideoUtils.getSiteUrl(binding.anime?.animeInfo?.cover)
+                )
                 .apply(RequestOptions.bitmapTransform(RoundedCorners(30)))
                 .into(binding.cover)
         })
