@@ -50,6 +50,10 @@ class HomeFragment : Fragment() {
             val action = HomeFragmentDirections.actionHomeFragmentToUpdateFragment()
             view.findNavController().navigate(action)
         }
+        binding.recommend.setOnClickListener { view ->
+            val action = HomeFragmentDirections.actionHomeFragmentToRecommendFragment()
+            view.findNavController().navigate(action)
+        }
     }
 
     /**

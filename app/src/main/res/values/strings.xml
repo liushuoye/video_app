@@ -9,6 +9,7 @@
     <string name="production_company">制作公司：</string>
     <string name="introduction">简介：</string>
     <string name="premiere_time">首播时间：</string>
-    <string name="new_title">最新一话：</string>
+    <string name="new_title">最新：</string>
     <string name="update">最近更新</string>
+    <string name="recommend">每日推荐</string>
 </resources>
