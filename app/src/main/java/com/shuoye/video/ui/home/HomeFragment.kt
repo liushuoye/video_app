@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayout
@@ -18,7 +17,6 @@ import com.shuoye.video.utils.Utils
 import com.youth.banner.indicator.CircleIndicator
 import com.youth.banner.listener.OnBannerListener
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 import java.util.*
 
 
@@ -64,32 +62,18 @@ class HomeFragment : Fragment() {
      * 设置轮播图适配器
      */
     private fun setBannerAdapter(binding: FragmentHometBinding) {
-
-        binding.banner
-            // 添加生命周期观察者
-            .addBannerLifecycleObserver(this)
-            // 设置轮播指示器(显示在banner上)
-            .setIndicator(CircleIndicator(context))
-            .setLoopTime(4000)
-        if (model.adapter != null) {
-            binding.banner.setAdapter(model.adapter)
-            return
-        }
         model.getBannerLiveData().observe(viewLifecycleOwner, {
-            model.banner.clear()
-            it.data?.let { it1 -> model.banner.addAll(it1) }
-            lifecycleScope.launch {
-                if (model.adapter == null) {
-                    model.adapter = ImageBannerAdapter(model.banner)
-                    binding.banner.setAdapter(model.adapter)
-                        // 设置点击事件
-                        .setOnBannerListener(OnBannerListener() { banner: Banner, _: Int ->
-                            val action =
-                                HomeFragmentDirections.actionHomeFragmentToAnimeInfoFragment(banner.id)
-                            binding.root.findNavController().navigate(action)
-                        })
-                }
-            }
+            binding.banner
+                .addBannerLifecycleObserver(viewLifecycleOwner)
+                .setIndicator(CircleIndicator(context))
+                .setLoopTime(4000)
+                .setAdapter(ImageBannerAdapter(it.data as MutableList<Banner>?))
+                .setOnBannerListener(OnBannerListener { banner: Banner, _: Int ->
+                    val action = HomeFragmentDirections.actionHomeFragmentToAnimeInfoFragment(
+                        banner.id
+                    )
+                    binding.root.findNavController().navigate(action)
+                })
         })
     }
 

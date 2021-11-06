@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
 
 
 /**
- * TODO
+ * 动漫详情
  * @program Video
  * @ClassName AnimeInfo
  * @author shuoye

@@ -136,7 +136,7 @@ class JZPlayer : JzvdStd {
                     currentSpeedIndex += 1
                 }
                 mediaInterface.setSpeed(getSpeedFromIndex(currentSpeedIndex))
-                tvSpeed!!.text = "倍数X" + getSpeedFromIndex(currentSpeedIndex)
+                tvSpeed!!.text = "倍数X${getSpeedFromIndex(currentSpeedIndex)}"
             }
             R.id.airplay -> {
                 val bundle = Bundle()
@@ -145,12 +145,6 @@ class JZPlayer : JzvdStd {
                 bundle.putString("playUrl", jzDataSource.currentUrl.toString())
                 bundle.putLong("duration", duration)
                 // TODO 投屏
-//                mcontext!!.startActivity(
-//                    Intent(
-//                        mcontext,
-//                        DLNAActivity::class.java
-//                    ).putExtras(bundle)
-//                )
             }
 
         }
@@ -202,7 +196,7 @@ class JZPlayer : JzvdStd {
     }
 
     override fun onTouch(v: View, event: MotionEvent): Boolean {
-        touchListener!!.touch()
+        touchListener?.touch()
         when (event.action) {
             MotionEvent.ACTION_MOVE -> if (locked) {
                 return true

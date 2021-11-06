@@ -12,7 +12,7 @@ import com.shuoye.video.utils.VideoUtils
 import com.youth.banner.adapter.BannerAdapter
 
 /**
- * TODO
+ * 轮播图适配器
  * @program Video
  * @ClassName ImageBannerAdapter
  * @author shuoye

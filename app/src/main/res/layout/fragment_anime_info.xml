@@ -18,7 +18,7 @@
             android:layout_width="150dp"
             android:layout_height="208dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:contentDescription="@string/TODO"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -28,7 +28,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="8dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:text="@{anime.animeInfo.name}"
                 android:textAlignment="viewStart"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 tools:text="青春期笨蛋不做兔女郎学姐的梦" />
 
@@ -170,6 +170,9 @@
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -195,9 +198,27 @@
 
             <Button
                 android:id="@+id/play"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/play" />
+                android:text="@string/play"
+                android:textColor="#00796B" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/series"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

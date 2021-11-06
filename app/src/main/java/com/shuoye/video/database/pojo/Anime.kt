@@ -4,7 +4,7 @@ import androidx.room.Embedded
 import androidx.room.Relation
 
 /**
- * TODO
+ * 动漫实体
  * @program Video
  * @ClassName Anime
  * @author shuoye

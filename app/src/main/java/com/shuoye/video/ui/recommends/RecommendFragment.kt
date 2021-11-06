@@ -8,8 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.shuoye.video.R
 import com.shuoye.video.databinding.FragmentRecyclerViewBinding
 import com.shuoye.video.ui.update.adapter.RecommendPagingAdapter
+import com.shuoye.video.utils.Utils
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -39,6 +41,7 @@ class RecommendFragment : Fragment() {
     }
 
     private fun init() {
+        binding.label.text = Utils.getString(R.string.recommend)
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         lifecycleScope.launch {

@@ -30,6 +30,9 @@
         <action
             android:id="@+id/action_animeInfoFragment_to_playerActivity"
             app:destination="@id/playerActivity" />
+        <action
+            android:id="@+id/action_animeInfoFragment_self"
+            app:destination="@id/animeInfoFragment" />
     </fragment>
     <activity
         android:id="@+id/playerActivity"
